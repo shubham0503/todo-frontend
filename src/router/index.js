@@ -40,12 +40,9 @@ const routes = [{
     beforeEnter: authenticated
   },
   {
-    path: '/dashboard',
-    name: 'Dashboard',
-    component: () => import( /* webpackChunkName: "dashboard" */ '../pages/Dashboard.vue'),
-    meta: {
-      layout: 'default'
-    },
+    path: '/',
+    name: 'Home',
+    redirect: '/todo',
     beforeEnter: requiresAuth
   },
   {
