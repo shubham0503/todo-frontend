@@ -18,7 +18,7 @@ class TodoService {
     }, { headers } );
 
     if (response) {
-      return response;
+      return response.data;
     }
   }
 

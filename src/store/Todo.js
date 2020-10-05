@@ -41,8 +41,18 @@ const actions = {
   async addTodo({commit}, todo){
     try {
       const todoResponse = await TodoService.addTodo(todo);
-      commit('ADD_TODO', todo);
 
+      if (todoResponse.status === 200) {
+        let newTodo = {
+          createdAt: todoResponse.data.createdAt,
+          description: todoResponse.data?.description ? todoResponse.data.description : '',
+          title: todoResponse.data.title,
+          dueDate: todoResponse.data.dueDate,
+          status: todoResponse.data.status,
+          _id: todoResponse.data._id
+        }
+        commit('ADD_TODO', newTodo);
+      }
       return todoResponse;
     } catch (err) {
       console.log(err);
