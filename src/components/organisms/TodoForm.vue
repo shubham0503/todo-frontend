@@ -23,7 +23,7 @@
                   <ValidationProvider name="title" rules="required">
                     <v-text-field
                       v-model="title"
-                      prepend-icon="mdi-pencil"
+                      prepend-icon="mdi-text-box-outline"
                       label="Title*"
                       slot-scope="{errors, valid}"
                       :error-messages="errors"
@@ -60,7 +60,7 @@
                   <ValidationProvider name="description">
                     <v-textarea
                       v-model="description"
-                      prepend-icon="mdi-text"
+                      prepend-icon="mdi-text-box-multiple-outline"
                       label="Description"
                       slot-scope="{errors, valid}"
                       :error-messages="errors"

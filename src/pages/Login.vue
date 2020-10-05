@@ -93,16 +93,18 @@
         const result = await this.$refs.obs.validate();
 
         if (result) {
+
           try {
             const loginResponse = await this.$store.dispatch('auth/login', this.user);
-            if (loginResponse?.accessToken) {
+
+            if (loginResponse.status === 200) {
               this.$router.push('/todo');
-            } else {
-              this.snackbar.message = "Please enter valid email and password.";
+            } else if (loginResponse.status >= 400) {
+              this.snackbar.message = loginResponse.message;
               this.snackbar.show = true;
             }
           } catch (err) {
-            this.snackbar.message = "Account doesn't exists.";
+            this.snackbar.message = "Something went wrong please try again later.";
             this.snackbar.show = true;
           }
         }

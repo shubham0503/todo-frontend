@@ -127,14 +127,14 @@
         if (result) {
           try {
             const registerResponse = await this.$store.dispatch('auth/register', this.user);
-            if (registerResponse) {
+            if (registerResponse.status === 200) {
               this.$router.push('/login');
-            } else {
-              this.snackbar.message = "Account already exists.";
+            } else if (registerResponse.status >= 400) {
+              this.snackbar.message = registerResponse.message;
               this.snackbar.show = true;
             }
           } catch (err) {
-            this.snackbar.message = "Account already exists.";
+            this.snackbar.message = "Something went wrong please try again later.";
             this.snackbar.show = true;
           }
         }
