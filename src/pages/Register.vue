@@ -51,15 +51,9 @@
                   </v-card-text>
                   
                   <v-card-actions>
-                    <v-btn @click="clear">Clear</v-btn>
+                    <v-btn text color="deep-purple" link to="/login">Already have an account?</v-btn>
                     <v-spacer></v-spacer>
                     <v-btn color="primary" @click="onSubmit" :disabled="invalid || !validated">Sign Up</v-btn>
-                  </v-card-actions>
-
-                  <v-card-actions>
-                    <v-btn text color="deep-purple" link to="/login">
-                      Already have an account?
-                    </v-btn>
                   </v-card-actions>
 
                   <v-snackbar

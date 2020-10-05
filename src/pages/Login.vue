@@ -23,14 +23,9 @@
                     </ValidationProvider>
                   </v-card-text>
                   <v-card-actions>
-                    <v-btn @click="clear">Clear</v-btn>
+                    <v-btn text color="deep-purple" link to="/register">New User?</v-btn>
                     <v-spacer></v-spacer>
                     <v-btn color="primary" @click="onSubmit" :disabled="invalid || !validated">Sign In</v-btn>
-                  </v-card-actions>
-                  <v-card-actions>
-                    <v-btn text color="deep-purple" link to="/register">
-                      New User?
-                    </v-btn>
                   </v-card-actions>
                   <v-snackbar
                     max-width="100%"
@@ -94,12 +89,6 @@
       }
     },
     methods: {
-      async clear() {
-        this.user.name = this.user.email = this.user.password = "";
-        this.$nextTick(() => {
-          this.$refs.obs.reset();
-        });
-      },
       async onSubmit() {
         const result = await this.$refs.obs.validate();
 

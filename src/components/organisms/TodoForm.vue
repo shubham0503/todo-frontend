@@ -11,12 +11,15 @@
       <ValidationObserver ref="obs">
         <v-card slot-scope="{ invalid, validated }">
           <v-card-title>
-            <span class="headline">Add New Todo</span>
+            <span class="headline custom-headline">Add New Todo</span>
+            <v-card-text class="custom-subtitle">
+              <small>Create new todo to keep track of duedates and keep informed..</small>
+            </v-card-text>
           </v-card-title>
           <v-card-text>
             <v-container>
               <v-row>
-                <v-col cols="12" sm="6" md="4">
+                <v-col cols="12" sm="12" md="8">
                   <ValidationProvider name="title" rules="required">
                     <v-text-field
                       v-model="title"
@@ -29,20 +32,7 @@
                     ></v-text-field>
                   </ValidationProvider>
                 </v-col>
-                <v-col cols="12" sm="6" md="4">
-                  <ValidationProvider name="description">
-                    <v-text-field
-                      v-model="description"
-                      prepend-icon="mdi-text"
-                      label="Description"
-                      slot-scope="{errors, valid}"
-                      :error-messages="errors"
-                      :success="valid"
-                      required
-                    ></v-text-field>
-                  </ValidationProvider>
-                </v-col>
-                <v-col cols="12" sm="6" md="4">
+                <v-col cols="12" sm="12" md="4">
                   <v-menu v-model="dueDateMenu" :close-on-content-click="false" :nudge-right="40"
                     transition="scale-transition" offset-y max-width="290px" min-width="290px">
                     <template v-slot:activator="{ on }">
@@ -66,19 +56,33 @@
                       @input="dueDateMenu = false"></v-date-picker>
                   </v-menu>
                 </v-col>
+                <v-col cols="12" sm="12" md="12">
+                  <ValidationProvider name="description">
+                    <v-textarea
+                      v-model="description"
+                      prepend-icon="mdi-text"
+                      label="Description"
+                      slot-scope="{errors, valid}"
+                      :error-messages="errors"
+                      :success="valid"
+                      rows="2"
+                    ></v-textarea>
+                  </ValidationProvider>
+                </v-col>
               </v-row>
             </v-container>
-            <small>*indicates required field</small>
+            
+            <small>
+              <v-icon small>
+                mdi-information
+              </v-icon> *Indicates required field</small>
           </v-card-text>
           <v-card-actions>
-            <v-btn @click="clear">Clear</v-btn>
-            <v-spacer></v-spacer>
-            <v-btn color="blue darken-1" text @click="dialog = false" ref="closeBtn">
+            <v-btn color="deep-purple" text @click="dialog = false" ref="closeBtn">
               Close
             </v-btn>
-            <v-btn color="blue darken-1" text @click="addTodo" :disabled="invalid || !validated">
-              Save
-            </v-btn>
+            <v-spacer></v-spacer>
+            <v-btn color="primary" @click="addTodo" :disabled="invalid || !validated">Save</v-btn>
           </v-card-actions>
         </v-card>
       </ValidationObserver>
@@ -182,5 +186,14 @@
     position: fixed;
     bottom: 10%;
     right: 1%;
+  }
+
+  .custom-headline {
+    color: #616161;
+  }
+
+  .custom-subtitle {
+    padding: 0px;
+    color: #757575;
   }
 </style>

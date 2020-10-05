@@ -116,7 +116,7 @@
           if(!this.search) return this.todoList;
           return (
             item.title.toLowerCase().includes(this.search.toLowerCase()) ||
-            item.status.toLowerCase().includes(this.search.toLowerCase())
+            item.description.toLowerCase().includes(this.search.toLowerCase())
           );
         }), ['createdAt'],['desc']);
       }
