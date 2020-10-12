@@ -1,6 +1,6 @@
 import AuthService from '../services/Auth';
 
-const user = JSON.parse(localStorage.getItem('user'));
+const user = JSON.parse(localStorage.getItem('loggedInUser'));
 const initialState = user
   ? { status: { loggedIn: true }, user }
   : { status: { loggedIn: false }, user: null };
@@ -46,7 +46,6 @@ export const auth = {
   },
   mutations: {
     loginSuccess(state, user) {
-      localStorage.setItem('userData', JSON.stringify(user));
       state.status.loggedIn = true;
       state.user = user;
     },
@@ -55,6 +54,7 @@ export const auth = {
       state.user = null;
     },
     logout(state) {
+      localStorage.clear();
       state.status.loggedIn = false;
       state.user = null;
     },

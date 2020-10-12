@@ -1,9 +1,11 @@
-export default function authHeader() {
-  let user = JSON.parse(localStorage.getItem('user'));
+export default async function authHeader() {
+  let user = await JSON.parse(localStorage.getItem('loggedInUser'));
 
   if (user && user.accessToken) {
     return {
-      'x-access-token': user.accessToken
+      'headers': {
+        'x-access-token': user.accessToken
+      }
     };
   } else {
     return {};

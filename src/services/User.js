@@ -1,7 +1,8 @@
 import axios from 'axios';
 import authHeader from './AuthHeader';
+import config from 'config';
 
-const API_URL = 'http://localhost:8080/api/user/';
+const API_URL = 'http://demoapitodo-env.eba-7dmrpzak.ap-south-1.elasticbeanstalk.com/api/user/';
 
 class UserService {
   getPublicContent() {

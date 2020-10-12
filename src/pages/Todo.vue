@@ -79,7 +79,7 @@
             color="blue"
             text
             v-bind="attrs"
-            @click="snackbar = false"
+            @click="snackbar.show = false"
           >
             Close
           </v-btn>
@@ -118,7 +118,7 @@
             item.title.toLowerCase().includes(this.search.toLowerCase()) ||
             item.description.toLowerCase().includes(this.search.toLowerCase())
           );
-        }), ['createdAt'],['desc']);
+        }), ['dueDate'],['asc']);
       }
     },
     methods: {
@@ -129,6 +129,7 @@
       isExpired(dateString) {
         let dateObj = new Date(dateString);
         let today = new Date();
+
         if (today > dateObj) {
           return true;
         } else {
@@ -162,8 +163,8 @@
     props: {
       source: String,
     },
-    async mounted() {
-      await this.$store.dispatch('todo/fetchTodo');
+    created() {
+      this.$store.dispatch('todo/fetchTodo');
     }
   }
 </script>

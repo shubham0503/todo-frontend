@@ -1,12 +1,7 @@
 import axios from 'axios';
+import authHeader from './AuthHeader';
 
-const API_URL = 'http://localhost:8080/api/todo';
-
-let userData = JSON.parse(localStorage.getItem('userData'));
-
-const headers = {
-  'x-access-token': userData?.accessToken
-}
+const API_URL = 'http://demoapitodo-env.eba-7dmrpzak.ap-south-1.elasticbeanstalk.com/api/todo';
 
 class TodoService {
   async addTodo(todo) {
@@ -15,7 +10,7 @@ class TodoService {
       description: todo.description,
       dueDate: todo.dueDate,
       status: todo.status
-    }, { headers } );
+    }, await authHeader() );
 
     if (response) {
       return response.data;
@@ -23,7 +18,7 @@ class TodoService {
   }
 
   async getTodoList() {
-    const response = await axios.get(API_URL, { headers } );
+    const response = await axios.get(API_URL, await authHeader() );
 
     if (response) {
       return response;
@@ -33,7 +28,7 @@ class TodoService {
   async markStatus(currentTodo) {
     const response = await axios.patch(API_URL+'/'+currentTodo, {
       todo: currentTodo
-    }, { headers } );
+    }, authHeader() );
 
     if (response) {
       return response;

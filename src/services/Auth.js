@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:8080/api/auth/';
+const API_URL = 'http://demoapitodo-env.eba-7dmrpzak.ap-south-1.elasticbeanstalk.com/api/auth/';
 
 class AuthService {
   async login(user) {
@@ -10,8 +10,7 @@ class AuthService {
         email: user.email,
         password: user.password
       });
-      
-      localStorage.setItem('loggedInUser', JSON.stringify(loginResponse.data));
+      await localStorage.setItem('loggedInUser', JSON.stringify(loginResponse.data));
 
       return loginResponse.data;
     } catch(err) {

@@ -50,9 +50,9 @@
     }),
     computed: {
       userName() {
-        if (localStorage.getItem('userData')) {
-          let userData = JSON.parse(localStorage.getItem('userData'));
-          return userData.name.toUpperCase();
+        if (localStorage.getItem('loggedInUser')) {
+          let loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+          return loggedInUser.name.toUpperCase();
         }
         return [];
       },
